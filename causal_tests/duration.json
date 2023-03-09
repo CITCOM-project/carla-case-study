@@ -1,0 +1,14 @@
+{
+    "tests": [
+      {
+        "name": "duration_game_duration_system",
+        "mutations": {"duration_game": "Plus1"},
+        "estimator": "InstrumentalVariableEstimator",
+        "estimate_type": "ate",
+        "effect": "direct",
+        "expectedEffect": {"duration_system": "Positive"},
+        "target_ks_score": null,
+        "skip": false
+      }
+  ]
+}

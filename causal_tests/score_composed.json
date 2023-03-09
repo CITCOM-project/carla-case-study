@@ -1,0 +1,31 @@
+{
+    "tests": [
+      {
+        "name": "red_light_score_composed_direct",
+        "mutations": {"red_light": "Swap"},
+        "estimator": "ScoreComposedEstimator",
+        "estimate_type": "ate",
+        "effect": "direct",
+        "expectedEffect": {"score_composed": "NoEffect"},
+        "skip": false
+      },
+      {
+        "name": "red_light_score_composed_total",
+        "mutations": {"red_light": "GoThrough"},
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "ate",
+        "effect": "total",
+        "expectedEffect": {"score_composed": "Negative"},
+        "skip": false
+      },
+      {
+        "name": "vehicle_blocked_score_composed_direct",
+        "mutations": {"vehicle_blocked": "Swap"},
+        "estimator": "ScoreComposedEstimator",
+        "estimate_type": "ate",
+        "effect": "direct",
+        "expectedEffect": {"score_composed": "NoEffect"},
+        "skip": false
+      }
+  ]
+}

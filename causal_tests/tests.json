@@ -1,0 +1,85 @@
+{
+  "tests": [
+    {
+      "name": "cloudiness_collisions_vehicle",
+      "mutations": {"cloudiness": "Increase"},
+      "estimator": "LogisticRegressionEstimator",
+      "estimate_type": "ate",
+      "expectedEffect": {"collisions_vehicle": "NoEffect"},
+      "skip": true
+    },
+    {
+      "name": "precipitation_collisions_vehicle",
+      "mutations": {"precipitation": "Plus5"},
+      "estimator": "LogisticRegressionEstimator",
+      "estimate_type": "ate",
+      "expectedEffect": {"collisions_vehicle": "NoEffect"},
+      "skip": true
+    },
+    {
+      "name": "wind_intensity_collisions_vehicle",
+      "mutations": {"wind_intensity": "Increase"},
+      "estimator": "LogisticRegressionEstimator",
+      "estimate_type": "ate",
+      "expectedEffect": {"collisions_vehicle": "NoEffect"},
+      "skip": true
+    },
+    {
+      "name": "percentage_speed_limit_collisions_vehicle",
+      "mutations": {"percentage_speed_limit": "Plus10"},
+      "estimator": "LogisticRegressionEstimator",
+      "estimate_type": "ate",
+      "expectedEffect": {"collisions_vehicle": "NoEffect"},
+      "skip": true
+    },
+    {
+      "name": "number_of_walkers_red_light",
+      "mutations": {"number_of_walkers": "Plus20"},
+      "estimator": "LogisticRegressionEstimator",
+      "estimate_type": "ate",
+      "expectedEffect": {"red_light": "NoEffect"},
+      "skip": true
+    },
+    {
+      "name": "number_of_walkers_collisions_vehicle",
+      "mutations": {"number_of_walkers": "Plus20"},
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "ate",
+      "expectedEffect": {"collisions_vehicle": "NoEffect"},
+      "skip": true
+    },
+    {
+      "name": "ego_vehicle_collisions_vehicle",
+      "mutations": {"ego_vehicle": "Swap"},
+      "estimator": "LogisticRegressionEstimator",
+      "estimate_type": "ate",
+      "expectedEffect": {"collisions_vehicle": "NoEffect"},
+      "skip": true
+    },
+    {
+      "name": "number_of_drivers_collisions_vehicle",
+      "mutations": {"number_of_drivers": "Plus20"},
+      "estimator": "LogisticRegressionEstimator",
+      "estimate_type": "ate",
+      "expectedEffect": {"collisions_vehicle": "NoEffect"},
+      "skip": true
+    },
+    {
+      "name": "number_of_drivers_route_timeout",
+      "mutations": {"number_of_drivers": "Plus20"},
+      "estimator": "LogisticRegressionEstimator",
+      "estimate_type": "ate",
+      "expectedEffect": {"route_timeout": "NoEffect"},
+      "skip": true
+    },
+    {
+      "name": "red_light_score_route",
+      "mutations": {"red_light": "Swap"},
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "ate",
+      "expectedEffect": {"route_timeout": "SomeEffect"},
+      "skip": false
+    }
+
+  ]
+}
