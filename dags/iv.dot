@@ -1,0 +1,13 @@
+digraph iv {
+IP [pos="-3.632,-7.542"];
+In [pos="-3.615,-4.945"];
+{rank="same"; Sc [role="outcome",pos="-2.214,-1.710"]; Sr [role="exposure",pos="-4.897,-1.677"];}
+{rank="max"; U [pos="-3.644,0.088"];}
+IP -> In;
+IP -> Sr;
+In -> Sc;
+In -> Sr;
+Sr -> Sc;
+U -> Sc;
+U -> Sr;
+}

@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "ego_vehicle_collisions_vehicle",
+      "mutations": {"ego_vehicle": "Swap"},
+      "estimator": "LogisticRegressionEstimator",
+      "estimate_type": "ate",
+      "expectedEffect": {"collisions_vehicle": "NoEffect"},
+      "skip": false
+    }
+  ]
+}

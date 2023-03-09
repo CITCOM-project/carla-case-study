@@ -1,0 +1,6 @@
+digraph infractions {
+  inputs -> infraction;
+  infraction -> score_route;
+  score_route -> score_composed;
+  infraction -> score_composed[style="dashed"];
+}

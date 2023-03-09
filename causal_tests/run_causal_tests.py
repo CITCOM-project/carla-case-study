@@ -66,38 +66,38 @@ class Infraction(Enum):
          return NotImplemented
 
 inputs = [
-    {"name": "percentage_speed_limit", "type": float, "distribution": scipy.stats.uniform(0, 100)},
-    {"name": "cloudiness", "type": float, "distribution": scipy.stats.uniform(0, 100)},
-    {"name": "fog_density", "type": float, "distribution": scipy.stats.uniform(0, 100)},
-    {"name": "fog_distance", "type": float, "distribution": scipy.stats.uniform(0, 100)},
-    {"name": "fog_falloff", "type": float, "distribution": scipy.stats.uniform(0, 100)},
-    {"name": "number_of_drivers", "type": int, "distribution": scipy.stats.rv_discrete(name="drivers", values=(range(0, 200), [1/200]*200))},
-    {"name": "number_of_walkers", "type": int, "distribution": scipy.stats.rv_discrete(name="drivers", values=(range(0, 200), [1/200]*200))},
-    {"name": "precipitation", "type": float, "distribution": scipy.stats.uniform(0, 100)},
-    {"name": "precipitation_deposits", "type": float, "distribution": scipy.stats.uniform(0, 100)},
-    {"name": "sun_altitude_angle", "type": float, "distribution": scipy.stats.uniform(0, 180)},
-    {"name": "sun_azimuth_angle", "type": float, "distribution": scipy.stats.uniform(0, 180)},
-    {"name": "wetness", "type": float, "distribution": scipy.stats.uniform(0, 100)},
-    {"name": "wind_intensity", "type": float, "distribution": scipy.stats.uniform(0, 1)},
-    {"name": "ego_vehicle", "type": Car, "distribution": EnumGen(Car)}
+    {"hidden": True, "name": "percentage_speed_limit", "datatype": float, "distribution": scipy.stats.uniform(0, 100)},
+    {"name": "cloudiness", "datatype": float, "distribution": scipy.stats.uniform(0, 100)},
+    {"name": "fog_density", "datatype": float, "distribution": scipy.stats.uniform(0, 100)},
+    {"name": "fog_distance", "datatype": float, "distribution": scipy.stats.uniform(0, 100)},
+    {"name": "fog_falloff", "datatype": float, "distribution": scipy.stats.uniform(0, 100)},
+    {"hidden": True, "name": "number_of_drivers", "datatype": int, "distribution": scipy.stats.rv_discrete(name="drivers", values=(range(0, 200), [1/200]*200))},
+    {"hidden": True, "name": "number_of_walkers", "datatype": int, "distribution": scipy.stats.rv_discrete(name="drivers", values=(range(0, 200), [1/200]*200))},
+    {"name": "precipitation", "datatype": float, "distribution": scipy.stats.uniform(0, 100)},
+    {"name": "precipitation_deposits", "datatype": float, "distribution": scipy.stats.uniform(0, 100)},
+    {"name": "sun_altitude_angle", "datatype": float, "distribution": scipy.stats.uniform(0, 180)},
+    {"name": "sun_azimuth_angle", "datatype": float, "distribution": scipy.stats.uniform(0, 180)},
+    {"name": "wetness", "datatype": float, "distribution": scipy.stats.uniform(0, 100)},
+    {"name": "wind_intensity", "datatype": float, "distribution": scipy.stats.uniform(0, 1)},
+    {"name": "ego_vehicle", "datatype": Car, "distribution": EnumGen(Car)}
 ]
 
 outputs = [
-    {"name": "collisions_layout", "type": bool},
-    # {"name": "collisions_pedestrian", "type": bool},
-    {"name": "collisions_vehicle", "type": bool},
-    {"name": "red_light", "type": bool, "distribution": scipy.stats.rv_discrete(name="red_light", values=(range(0, 2), [1/2]*2))},
-    {"name": "vehicle_blocked", "type": bool, "distribution": scipy.stats.rv_discrete(name="vehicle_blocked", values=(range(0, 2), [1/2]*2))},
-    {"name": "route_length", "type": float},
-    {"name": "route_timeout", "type": bool},
-    {"name": "score_route", "type": float},
-    {"name": "score_composed", "type": float},
-    {"name": "duration_game", "type": float},
-    {"name": "duration_system", "type": float},
-    # {"name": "status", "type": Status},
-    # {"name": "stop_infraction", "type": int},
-    {"name": "total_steps", "type": int},
-    {"name": "infraction", "type": Infraction, "distribution": EnumGen(Infraction)}
+    {"name": "collisions_layout", "datatype": bool},
+    # {"name": "collisions_pedestrian", "datatype": bool},
+    {"name": "collisions_vehicle", "datatype": bool},
+    {"name": "red_light", "datatype": bool, "distribution": scipy.stats.rv_discrete(name="red_light", values=(range(0, 2), [1/2]*2))},
+    {"name": "vehicle_blocked", "datatype": bool, "distribution": scipy.stats.rv_discrete(name="vehicle_blocked", values=(range(0, 2), [1/2]*2))},
+    {"name": "route_length", "datatype": float},
+    {"name": "route_timeout", "datatype": bool},
+    {"name": "score_route", "datatype": float},
+    {"name": "score_composed", "datatype": float},
+    {"name": "duration_game", "datatype": float},
+    {"name": "duration_system", "datatype": float},
+    # {"name": "status", "datatype": Status},
+    # {"name": "stop_infraction", "datatype": int},
+    # {"name": "total_steps", "datatype": int},
+    {"name": "infraction", "datatype": Infraction, "distribution": EnumGen(Infraction)}
 ]
 
 
@@ -113,8 +113,8 @@ effects = {
 }
 
 # Create input structure required to create a modelling scenario
-variables = [Input(i['name'], i['type'], i['distribution']) for i in inputs] + \
-                   [Output(i['name'], i['type']) for i in outputs]
+variables = [Input(i['name'], i['datatype'], i['distribution']) for i in inputs] + \
+                   [Output(i['name'], i['datatype']) for i in outputs]
 
 vnames = {v.name: v for v in variables}
 
@@ -178,7 +178,7 @@ mutates = {
 if __name__ == "__main__":
     args = JsonUtility.get_args()
     json_utility = JsonUtility(args.log_path)  # Create an instance of the extended JsonUtility class
-    json_utility.set_path(args.json_path, args.dag_path, args.data_path)  # Set the path to the data.csv, dag.dot and causal_tests.json file
+    json_utility.set_paths(args.json_path, args.dag_path, args.data_path)  # Set the path to the data.csv, dag.dot and causal_tests.json file
 
     # Load the Causal Variables into the JsonUtility class ready to be used in the tests
     json_utility.set_variables(inputs, outputs, [])

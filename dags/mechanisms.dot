@@ -1,0 +1,76 @@
+digraph simple {
+  /* INPUTS */
+  cloudiness [type="input", datatype=float];
+  fog_density [type="input", datatype=float];
+  fog_distance [type="input", datatype=float];
+  fog_falloff [type="input", datatype=float];
+  number_of_drivers [type="input", datatype=int];
+  number_of_walkers [type="input", datatype=int];
+  precipitation [type="input", datatype=float];
+  precipitation_deposits [type="input", datatype=float];
+  sun_altitude_angle [type="input", datatype=float];
+  sun_azimuth_angle [type="input", datatype=float];
+  wetness [type="input", datatype=float];
+  wind_intensity [type="input", datatype=float];
+
+  /* Mediators */
+  visibility [type="hidden"]
+  slippery [type="hidden"]
+
+  /* OUTPUTS */
+  collisions_layout [type="output", datatype=int];
+  collisions_pedestrian [type="output", datatype=int];
+  collisions_vehicle [type="output", datatype=int];
+  red_light [type="output", datatype=int];
+  route_length [type="output", datatype=float];
+  route_timeout [type="output", datatype=float];
+  score_route [type="output", datatype=score_route];
+  stop_infraction [type="output", datatype=int];
+  total_steps [type="output", datatype=int];
+
+  collisions_layout -> score_route;
+  collisions_pedestrian -> score_route;
+  collisions_vehicle -> score_route;
+  red_light -> score_route;
+  stop_infraction -> score_route;
+
+  cloudiness -> visibility;
+  fog_density -> visibility;
+  fog_distance -> visibility;
+  fog_falloff -> visibility;
+  sun_altitude_angle -> visibility;
+  sun_azimuth_angle -> visibility;
+
+  precipitation -> slippery;
+  precipitation_deposits -> slippery;
+  wetness -> slippery;
+
+  slippery -> collisions_layout;
+  slippery -> collisions_pedestrian;
+  slippery -> collisions_vehicle;
+  slippery -> red_light;
+  slippery -> stop_infraction;
+
+  number_of_drivers -> collisions_layout;
+  number_of_drivers -> collisions_pedestrian;
+  number_of_drivers -> collisions_vehicle;
+
+  number_of_walkers -> collisions_layout;
+  number_of_walkers -> collisions_pedestrian;
+  number_of_walkers -> collisions_vehicle;
+
+  visibility -> collisions_layout;
+  visibility -> collisions_pedestrian;
+  visibility -> collisions_vehicle;
+  visibility -> red_light;
+  visibility -> stop_infraction;
+
+  wind_intensity -> collisions_layout;
+  wind_intensity -> collisions_pedestrian;
+  wind_intensity -> collisions_vehicle;
+  wind_intensity -> red_light;
+  wind_intensity -> stop_infraction;
+
+  route_timeout -> score_route;
+  route_timeout -> total_steps;
+  route_length -> total_steps;}

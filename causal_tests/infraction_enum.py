@@ -8,8 +8,9 @@ Created on Tue Jan 24 15:24:58 2023
 
 import pandas as pd
 from enum import Enum
+import sys
 
-DATAPATH = "../new_data/big_data.csv"
+DATAPATH = sys.argv[1]
 
 df = pd.read_csv(DATAPATH)
 
@@ -20,5 +21,4 @@ df['infraction'] = False
 for i in infractions:
     df['infraction'] = [i if x else infraction for infraction, x in zip(df['infraction'], df[i])]
 
-df.to_csv(DATAPATH.replace("big_data", "infractions"))
-
+df.to_csv(DATAPATH.replace(".csv", "_infractions.csv"))

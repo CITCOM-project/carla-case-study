@@ -1,0 +1,100 @@
+digraph simple {
+  /* INPUTS */
+  cloudiness [type="input", datatype=float];
+  number_of_drivers [type="input", datatype=int];
+  number_of_walkers [type="input", datatype=int];
+  precipitation [type="input", datatype=float];
+  precipitation_deposits [type="input", datatype=float];
+  sun_altitude_angle [type="input", datatype=float];
+  sun_azimuth_angle [type="input", datatype=float];
+  wind_intensity [type="input", datatype=float];
+  percentage_speed_limit [type="input", datatype=float];
+  ego_vehicle [type="input", datatype=Car];
+
+  /* OUTPUTS */
+  collisions_layout [type="output", datatype=int];
+  collisions_pedestrian [type="output", datatype=int];
+  collisions_vehicle [type="output", datatype=int];
+  red_light [type="output", datatype=int];
+  route_length [type="output", datatype=float];
+  route_timeout [type="output", datatype=float];
+  score_route [type="output", datatype=score_route];
+  stop_infraction [type="output", datatype=int];
+  total_steps [type="output", datatype=int];
+
+  ego_vehicle -> collisions_layout;
+  ego_vehicle -> collisions_pedestrian;
+  ego_vehicle -> collisions_vehicle;
+  ego_vehicle -> red_light;
+  ego_vehicle -> stop_infraction;
+
+  cloudiness -> collisions_layout;
+  cloudiness -> collisions_pedestrian;
+  cloudiness -> collisions_vehicle;
+  cloudiness -> red_light;
+  cloudiness -> stop_infraction;
+
+  collisions_layout -> route_timeout;
+  collisions_layout -> score_route;
+
+  collisions_pedestrian -> route_timeout;
+  collisions_pedestrian -> score_route;
+
+  collisions_vehicle -> route_timeout;
+  collisions_vehicle -> score_route;
+
+  number_of_drivers -> collisions_vehicle;
+  number_of_walkers -> collisions_pedestrian;
+
+  percentage_speed_limit -> collisions_layout;
+  percentage_speed_limit -> collisions_pedestrian;
+  percentage_speed_limit -> collisions_vehicle;
+  percentage_speed_limit -> red_light;
+  percentage_speed_limit -> stop_infraction;
+
+  precipitation -> collisions_layout;
+  precipitation -> collisions_pedestrian;
+  precipitation -> collisions_vehicle;
+  precipitation -> red_light;
+  precipitation -> stop_infraction;
+
+  precipitation_deposits -> collisions_layout;
+  precipitation_deposits -> collisions_pedestrian;
+  precipitation_deposits -> collisions_vehicle;
+  precipitation_deposits -> red_light;
+  precipitation_deposits -> stop_infraction;
+
+  red_light -> route_timeout;
+  red_light -> score_route;
+
+  route_length -> collisions_layout;
+  route_length -> collisions_pedestrian;
+  route_length -> collisions_vehicle;
+  route_length -> red_light;
+  route_length -> route_timeout;
+  route_length -> stop_infraction;
+  route_length -> total_steps;
+
+  route_timeout -> score_route;
+  route_timeout -> total_steps;
+
+  stop_infraction -> route_timeout;
+  stop_infraction -> score_route;
+
+  sun_altitude_angle -> collisions_layout;
+  sun_altitude_angle -> collisions_pedestrian;
+  sun_altitude_angle -> collisions_vehicle;
+  sun_altitude_angle -> red_light;
+  sun_altitude_angle -> stop_infraction;
+
+  sun_azimuth_angle -> collisions_layout;
+  sun_azimuth_angle -> collisions_pedestrian;
+  sun_azimuth_angle -> collisions_vehicle;
+  sun_azimuth_angle -> red_light;
+  sun_azimuth_angle -> stop_infraction;
+
+  wind_intensity -> collisions_layout;
+  wind_intensity -> collisions_pedestrian;
+  wind_intensity -> collisions_vehicle;
+  wind_intensity -> red_light;
+  wind_intensity -> stop_infraction;}
