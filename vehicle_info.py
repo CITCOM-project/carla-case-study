@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import numpy as np
 
+
 vehicles = {
     "vehicle.audi.a2": {"length": 1.852684736251831, "width": 0.8943394422531128, "height": 0.7735435366630554},
     "vehicle.audi.tt": {"length": 2.0906050205230717, "width": 0.9970585703849792, "height": 0.6926480531692505},
@@ -74,39 +75,98 @@ vehicles = {
     },
 }
 
-data = pd.read_csv("/home/michael/Downloads/TCP_random_vehicle.csv", index_col=0)
+inputs = [
+    # "cloudiness",
+    # "fog_density",
+    # "fog_distance",
+    # "fog_falloff",
+    # "precipitation",
+    # "precipitation_deposits",
+    # "sun_altitude_angle",
+    # "sun_azimuth_angle",
+    # "wetness",
+    # "wind_intensity",
+    # "ego_vehicle",
+    # "ego_vehicle_color",
+    # "ego_vehicle_number_of_wheels",
+    # "ego_vehicle_object_type",
+    # "ego_vehicle_role_name",
+    # "ego_vehicle_sticky_control",
+    "number_of_drivers",
+    "number_of_walkers",
+    "percentage_speed_limit",
+    "route_length",
+    # "total_steps",
+    # "score_composed",
+    # "score_penalty",
+    # "score_route",
+    # "ego_vehicle_driver_id",
+    # "crashed_out_early",
+]
 
+data = pd.read_csv("/home/michael/Downloads/TCP_random_vehicle.csv", index_col=0)
+data["crashed_out_early"] = (data["duration_game"] < 1).astype(int)
+print(data.columns)
 
 for dim in ["length", "width", "height"]:
     data[f"ego_vehicle_{dim}"] = [vehicles[v][dim] if v in vehicles else None for v in data["ego_vehicle"]]
 
-# infractions = [c for c in data.columns if "collisions" in c] + ["red_light"]
+infractions = [c for c in data.columns if "collisions" in c] + ["red_light", "stop_infraction"]
+data["infraction_committed"] = data[infractions].any(axis=1).astype(int)
 
 length_infractions = []
 for length, g in data[["ego_vehicle_length", "red_light"]].groupby("ego_vehicle_length"):
-    length_infractions.append((length, g.sum()['red_light']/len(g)))
+    length_infractions.append((length, g.sum()["red_light"] / len(g)))
 
 # plt.scatter(data['ego_vehicle_width'], data['red_light'])
 
-train = data[['red_light', 'ego_vehicle_length', 'ego_vehicle_width']].dropna()
-model = sm.Logit(train['red_light'], train[['ego_vehicle_length']]).fit(disp=0)
+train = (
+    data[["red_light", "ego_vehicle_length", "ego_vehicle_width", "crashed_out_early"]]
+    .where(data["ego_vehicle_length"] < 3)
+    .where(1 < data["ego_vehicle_length"])
+    .dropna()
+)
+train["Intercept"] = 1
+# model = sm.Logit(train['red_light'], train[['ego_vehicle_length', 'Intercept']]).fit()
+model = sm.OLS(train["red_light"], train[["ego_vehicle_length"]]).fit()
 # print(model.summary())
 
-coefs = pd.DataFrame({
-    'coef': model.params.values,
-    'odds ratio': np.exp(model.params.values),
-}, index=model.params.index)
+coefs = pd.DataFrame(
+    {
+        "coef": model.params.values,
+        "odds ratio": np.exp(model.params.values),
+    },
+    index=model.params.index,
+)
 print(coefs)
 
-X = pd.DataFrame()
-X['ego_vehicle_length'] = np.linspace(0, 3, 11)
-X['odds(red_light)'] = model.predict(X)
-print(X)
+# X = pd.DataFrame()
+# X['ego_vehicle_length'] = np.linspace(0.5, 3, 11)
+# X['intercept'] = 1
+# X['odds(red_light)'] = model.predict(X)
+# # print(X)
+# plt.plot(X['ego_vehicle_length'], X['odds(red_light)'])
 
-plt.scatter(train['ego_vehicle_length'], train['red_light'])
+plt.scatter(train["ego_vehicle_length"], train["red_light"])
+
+# plt.hist(train['ego_vehicle_length'])
 # x, y = zip(*length_infractions)
 # model = sm.OLS(y, x).fit()
 # # print(model.summary())
 # plt.scatter(x,y)
 # plt.xlabel("Length")
 # plt.ylabel("P(Red Light Infraction)")
+
+outcome = "duration_game"
+for col in data:
+    if col in [outcome, "infraction_committed"] + inputs or data.dtypes[col] not in [int, float]:
+        continue
+    train = data[[col, outcome, "infraction_committed"] + inputs].dropna()
+    if len(train) == 0:
+        continue
+    train["intercept"] = 1
+    model = sm.OLS(train[outcome], train[[col, "infraction_committed", "intercept"] + inputs]).fit()
+    if not model.conf_int().loc[col][0] <= 0 <= model.conf_int().loc[col][1]:
+        print(col)
+        print(model.conf_int().loc[col][0], model.params[col], model.conf_int().loc[col][1])
+        print()
