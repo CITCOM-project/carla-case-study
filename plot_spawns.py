@@ -15,8 +15,12 @@ from PIL import Image
 import urllib.request
 import io
 
-interfuser_routes = ET.parse('InterFuser/leaderboard/data/training_routes/routes_town01_short.xml').getroot()
-tcp_routes = ET.parse('TCP/leaderboard/data/TCP_training_routes/routes_town01.xml').getroot()
+interfuser_routes = ET.parse(
+    "InterFuser/leaderboard/data/training_routes/routes_town01_short.xml"
+).getroot()
+tcp_routes = ET.parse(
+    "TCP/leaderboard/data/TCP_training_routes/routes_town01.xml"
+).getroot()
 
 interfuser_results_dir = "InterFuser/collected_data/dataset/weather-0/data"
 
@@ -59,21 +63,23 @@ TRAFFIC_LIGHTS = [
     (323.799988, 4.980000, 0.103242),
 ]
 
+
 def get_routes(routes):
     X = []
     Y = []
     for route in routes:
         if route[0].tag == "weather":
             route = route[0]
-        X.append(float(route[0].attrib['x']))
+        X.append(float(route[0].attrib["x"]))
         # Flip Y to convert between coordinate systems
-        Y.append(-float(route[0].attrib['y']))
+        Y.append(-float(route[0].attrib["y"]))
     return X, Y
 
 
 def closest_node(node, nodes):
     closest_index = distance.cdist([node], nodes).argmin()
     return nodes[closest_index]
+
 
 fig, ax = plt.subplots(1, 1, figsize=(10, 10))
 
@@ -85,8 +91,10 @@ with urllib.request.urlopen(URL) as url:
 
 offset_x = -15
 offset_y = -370
-size=425
-ax.imshow(img, extent=[0+offset_x, size+offset_x, 0+offset_y, size+offset_y-5])
+size = 425
+ax.imshow(
+    img, extent=[0 + offset_x, size + offset_x, 0 + offset_y, size + offset_y - 5]
+)
 
 X, Y = get_routes(interfuser_routes)
 ax.scatter(X, Y, color="darkcyan")
@@ -98,15 +106,15 @@ for i, (x, y) in enumerate(zip(X, Y)):
         spawns[(x, y)] = []
     spawns[(x, y)].append(str(i))
 for x, y in spawns:
-    ax.annotate(", ".join(spawns[(x, y)]), (x+5, y), color="cyan")
+    ax.annotate(", ".join(spawns[(x, y)]), (x + 5, y), color="cyan")
 
 actual_X = []
 actual_Y = []
 for route in os.listdir(interfuser_results_dir):
     with open(f"{interfuser_results_dir}/{route}/measurements/0000.json") as f:
         data = json.load(f)
-        actual_X.append(data['x'])
-        actual_Y.append(-data['y'])
+        actual_X.append(data["x"])
+        actual_Y.append(-data["y"])
 
 for x, y in zip(X, Y):
     print(closest_node((x, y), list(zip(actual_X, actual_Y))))

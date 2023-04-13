@@ -12,13 +12,41 @@ import numpy as np
 
 
 vehicles = {
-    "vehicle.audi.a2": {"length": 1.852684736251831, "width": 0.8943394422531128, "height": 0.7735435366630554},
-    "vehicle.audi.tt": {"length": 2.0906050205230717, "width": 0.9970585703849792, "height": 0.6926480531692505},
-    "vehicle.bmw.grandtourer": {"length": 2.305502891540528, "width": 1.1208566427230835, "height": 0.8336379528045654},
-    "vehicle.yamaha.yzf": {"length": 1.1047229766845703, "width": 0.4335170984268188, "height": 0.6255727410316467},
-    "vehicle.audi.etron": {"length": 2.427854299545288, "width": 1.0163782835006714, "height": 0.8246796727180481},
-    "vehicle.nissan.micra": {"length": 1.8166879415512085, "width": 0.9225568771362304, "height": 0.750732421875},
-    "vehicle.bh.crossbike": {"length": 0.7436444163322449, "width": 0.4296287298202514, "height": 0.5397894978523254},
+    "vehicle.audi.a2": {
+        "length": 1.852684736251831,
+        "width": 0.8943394422531128,
+        "height": 0.7735435366630554,
+    },
+    "vehicle.audi.tt": {
+        "length": 2.0906050205230717,
+        "width": 0.9970585703849792,
+        "height": 0.6926480531692505,
+    },
+    "vehicle.bmw.grandtourer": {
+        "length": 2.305502891540528,
+        "width": 1.1208566427230835,
+        "height": 0.8336379528045654,
+    },
+    "vehicle.yamaha.yzf": {
+        "length": 1.1047229766845703,
+        "width": 0.4335170984268188,
+        "height": 0.6255727410316467,
+    },
+    "vehicle.audi.etron": {
+        "length": 2.427854299545288,
+        "width": 1.0163782835006714,
+        "height": 0.8246796727180481,
+    },
+    "vehicle.nissan.micra": {
+        "length": 1.8166879415512085,
+        "width": 0.9225568771362304,
+        "height": 0.750732421875,
+    },
+    "vehicle.bh.crossbike": {
+        "length": 0.7436444163322449,
+        "width": 0.4296287298202514,
+        "height": 0.5397894978523254,
+    },
     "vehicle.lincoln.mkz2017": {
         "length": 2.4508416652679443,
         "width": 1.0641621351242063,
@@ -44,17 +72,41 @@ vehicles = {
         "width": 0.3818394243717193,
         "height": 0.6382853388786316,
     },
-    "vehicle.bmw.isetta": {"length": 1.1036475896835327, "width": 0.7404598593711853, "height": 0.6893735527992249},
-    "vehicle.citroen.c3": {"length": 1.9938424825668333, "width": 0.9254241585731506, "height": 0.8085548281669617},
+    "vehicle.bmw.isetta": {
+        "length": 1.1036475896835327,
+        "width": 0.7404598593711853,
+        "height": 0.6893735527992249,
+    },
+    "vehicle.citroen.c3": {
+        "length": 1.9938424825668333,
+        "width": 0.9254241585731506,
+        "height": 0.8085548281669617,
+    },
     "vehicle.diamondback.century": {
         "length": 0.8214218020439148,
         "width": 0.1862581223249435,
         "height": 0.5119513869285583,
     },
-    "vehicle.tesla.model3": {"length": 2.3958897590637207, "width": 1.081725001335144, "height": 0.744159996509552},
-    "vehicle.seat.leon": {"length": 2.0964150428771973, "width": 0.9080929160118104, "height": 0.7369155883789062},
-    "vehicle.kawasaki.ninja": {"length": 1.0166761875152588, "width": 0.4012899398803711, "height": 0.5727267861366272},
-    "vehicle.nissan.patrol": {"length": 2.3022549152374268, "width": 0.9657965898513794, "height": 0.927423059940338},
+    "vehicle.tesla.model3": {
+        "length": 2.3958897590637207,
+        "width": 1.081725001335144,
+        "height": 0.744159996509552,
+    },
+    "vehicle.seat.leon": {
+        "length": 2.0964150428771973,
+        "width": 0.9080929160118104,
+        "height": 0.7369155883789062,
+    },
+    "vehicle.kawasaki.ninja": {
+        "length": 1.0166761875152588,
+        "width": 0.4012899398803711,
+        "height": 0.5727267861366272,
+    },
+    "vehicle.nissan.patrol": {
+        "length": 2.3022549152374268,
+        "width": 0.9657965898513794,
+        "height": 0.927423059940338,
+    },
     "vehicle.mercedes-benz.coupe": {
         "length": 2.513388395309448,
         "width": 1.0757731199264526,
@@ -65,9 +117,21 @@ vehicles = {
         "width": 0.95259827375412,
         "height": 0.9389679431915284,
     },
-    "vehicle.mustang.mustang": {"length": 2.358762502670288, "width": 0.947413444519043, "height": 0.650469958782196},
-    "vehicle.volkswagen.t2": {"length": 2.2402184009552, "width": 1.034657597541809, "height": 1.0188955068588257},
-    "vehicle.chevrolet.impala": {"length": 2.6787397861480717, "width": 1.0166015625, "height": 0.7053292393684387},
+    "vehicle.mustang.mustang": {
+        "length": 2.358762502670288,
+        "width": 0.947413444519043,
+        "height": 0.650469958782196,
+    },
+    "vehicle.volkswagen.t2": {
+        "length": 2.2402184009552,
+        "width": 1.034657597541809,
+        "height": 1.0188955068588257,
+    },
+    "vehicle.chevrolet.impala": {
+        "length": 2.6787397861480717,
+        "width": 1.0166015625,
+        "height": 0.7053292393684387,
+    },
     "vehicle.carlamotors.carlacola": {
         "length": 2.601919174194336,
         "width": 1.3072861433029177,
@@ -109,13 +173,20 @@ data["crashed_out_early"] = (data["duration_game"] < 1).astype(int)
 print(data.columns)
 
 for dim in ["length", "width", "height"]:
-    data[f"ego_vehicle_{dim}"] = [vehicles[v][dim] if v in vehicles else None for v in data["ego_vehicle"]]
+    data[f"ego_vehicle_{dim}"] = [
+        vehicles[v][dim] if v in vehicles else None for v in data["ego_vehicle"]
+    ]
 
-infractions = [c for c in data.columns if "collisions" in c] + ["red_light", "stop_infraction"]
+infractions = [c for c in data.columns if "collisions" in c] + [
+    "red_light",
+    "stop_infraction",
+]
 data["infraction_committed"] = data[infractions].any(axis=1).astype(int)
 
 length_infractions = []
-for length, g in data[["ego_vehicle_length", "red_light"]].groupby("ego_vehicle_length"):
+for length, g in data[["ego_vehicle_length", "red_light"]].groupby(
+    "ego_vehicle_length"
+):
     length_infractions.append((length, g.sum()["red_light"] / len(g)))
 
 # plt.scatter(data['ego_vehicle_width'], data['red_light'])
@@ -159,14 +230,23 @@ plt.scatter(train["ego_vehicle_length"], train["red_light"])
 
 outcome = "duration_game"
 for col in data:
-    if col in [outcome, "infraction_committed"] + inputs or data.dtypes[col] not in [int, float]:
+    if col in [outcome, "infraction_committed"] + inputs or data.dtypes[col] not in [
+        int,
+        float,
+    ]:
         continue
     train = data[[col, outcome, "infraction_committed"] + inputs].dropna()
     if len(train) == 0:
         continue
     train["intercept"] = 1
-    model = sm.OLS(train[outcome], train[[col, "infraction_committed", "intercept"] + inputs]).fit()
+    model = sm.OLS(
+        train[outcome], train[[col, "infraction_committed", "intercept"] + inputs]
+    ).fit()
     if not model.conf_int().loc[col][0] <= 0 <= model.conf_int().loc[col][1]:
         print(col)
-        print(model.conf_int().loc[col][0], model.params[col], model.conf_int().loc[col][1])
+        print(
+            model.conf_int().loc[col][0],
+            model.params[col],
+            model.conf_int().loc[col][1],
+        )
         print()

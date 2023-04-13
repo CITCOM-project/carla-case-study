@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 
 df = pd.read_csv("../data/big_data.csv")
-plt.scatter(df['number_of_walkers'], df['red_light'])
+plt.scatter(df["number_of_walkers"], df["red_light"])
 
-mod = sm.OLS(df['number_of_walkers'], df['red_light']).fit()
+mod = sm.OLS(df["number_of_walkers"], df["red_light"]).fit()
 print(mod.summary())

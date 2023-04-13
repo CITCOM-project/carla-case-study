@@ -14,11 +14,24 @@ DATAPATH = sys.argv[1]
 
 df = pd.read_csv(DATAPATH)
 
-infractions = [x for x in df.columns if "collisions" in x] + ["red_light", "stop_infraction"]
+infractions = [
+    "collisions_layout",
+    "collisions_pedestrian",
+    "collisions_vehicle",
+    "outside_route_lanes",
+    "red_light",
+    "route_dev",
+    "route_timeout",
+    "stop_infraction",
+    "vehicle_blocked",
+]
+
 Infraction = Enum("Infraction", infractions)
-df['infraction'] = False
+df["infraction"] = False
 
 for i in infractions:
-    df['infraction'] = [i if x else infraction for infraction, x in zip(df['infraction'], df[i])]
+    df["infraction"] = [
+        i if x else infraction for infraction, x in zip(df["infraction"], df[i])
+    ]
 
 df.to_csv(DATAPATH.replace(".csv", "_infractions.csv"))
