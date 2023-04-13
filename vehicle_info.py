@@ -168,7 +168,7 @@ inputs = [
     # "crashed_out_early",
 ]
 
-data = pd.read_csv("/home/michael/Downloads/TCP_random_vehicle.csv", index_col=0)
+data = pd.read_csv("TCP/data/TCP_random_vehicle.csv", index_col=0)
 data["crashed_out_early"] = (data["duration_game"] < 1).astype(int)
 print(data.columns)
 
@@ -191,25 +191,25 @@ for length, g in data[["ego_vehicle_length", "red_light"]].groupby(
 
 # plt.scatter(data['ego_vehicle_width'], data['red_light'])
 
-train = (
-    data[["red_light", "ego_vehicle_length", "ego_vehicle_width", "crashed_out_early"]]
-    .where(data["ego_vehicle_length"] < 3)
-    .where(1 < data["ego_vehicle_length"])
-    .dropna()
-)
-train["Intercept"] = 1
-# model = sm.Logit(train['red_light'], train[['ego_vehicle_length', 'Intercept']]).fit()
-model = sm.OLS(train["red_light"], train[["ego_vehicle_length"]]).fit()
-# print(model.summary())
+# train = (
+#     data[inputs+["red_light", "ego_vehicle_length", "ego_vehicle_width", "crashed_out_early"]]
+#     .where(data["ego_vehicle_length"] < 3)
+#     .where(1 < data["ego_vehicle_length"])
+#     .dropna()
+# )
+# train["Intercept"] = 1
+# # model = sm.Logit(train['red_light'], train[['ego_vehicle_length', 'Intercept']]).fit()
+# model = sm.OLS(train["red_light"], train[["ego_vehicle_length", "route_length", "number_of_walkers", "number_of_drivers"]]).fit()
+# # print(model.summary())
 
-coefs = pd.DataFrame(
-    {
-        "coef": model.params.values,
-        "odds ratio": np.exp(model.params.values),
-    },
-    index=model.params.index,
-)
-print(coefs)
+# coefs = pd.DataFrame(
+#     {
+#         "coef": model.params.values,
+#         "odds ratio": np.exp(model.params.values),
+#     },
+#     index=model.params.index,
+# )
+# print(coefs)
 
 # X = pd.DataFrame()
 # X['ego_vehicle_length'] = np.linspace(0.5, 3, 11)
@@ -218,7 +218,7 @@ print(coefs)
 # # print(X)
 # plt.plot(X['ego_vehicle_length'], X['odds(red_light)'])
 
-plt.scatter(train["ego_vehicle_length"], train["red_light"])
+# plt.scatter(train["ego_vehicle_length"], train["red_light"])
 
 # plt.hist(train['ego_vehicle_length'])
 # x, y = zip(*length_infractions)
@@ -239,8 +239,9 @@ for col in data:
     if len(train) == 0:
         continue
     train["intercept"] = 1
+    # train = train.where(data['red_light'] == 1).dropna()
     model = sm.OLS(
-        train[outcome], train[[col, "infraction_committed", "intercept"] + inputs]
+        train[outcome], train[[col, "infraction_committed", "route_length", "number_of_walkers", "number_of_drivers", "intercept"] + inputs]
     ).fit()
     if not model.conf_int().loc[col][0] <= 0 <= model.conf_int().loc[col][1]:
         print(col)
