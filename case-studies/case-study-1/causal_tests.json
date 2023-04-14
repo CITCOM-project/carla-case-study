@@ -1,6 +1,16 @@
 {
     "tests": [
       {
+        "name": "no_infraction",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["score_route"],
+        "expectedEffect": {"score_composed": "1.0"},
+        "conditions": ["infraction == 'False'"],
+        "skip": false
+      },
+      {
         "name": "stop_infraction",
         "estimator": "LinearRegressionEstimator",
         "estimate_type": "coefficient",
@@ -8,6 +18,7 @@
         "mutations": ["score_route"],
         "expectedEffect": {"score_composed": "0.8"},
         "conditions": ["infraction == 'stop_infraction'"],
+        "comment": "No stop signs in town 1?",
         "skip": true
       },
       {

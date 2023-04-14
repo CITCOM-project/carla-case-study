@@ -9,7 +9,7 @@
         "duration_game"
       ],
       "expectedEffect": {
-        "duration_system": "SomeEffect"
+        "duration_system": "Positive"
       },
       "skip": false
     }
