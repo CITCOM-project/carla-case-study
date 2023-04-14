@@ -1,0 +1,17 @@
+digraph iv {
+  environment -> duration_game;
+  infraction -> duration_game;
+  environment -> infraction;
+  duration_game -> duration_system;
+  hardware -> duration_system;
+
+  number_of_walkers -> duration_game;
+  number_of_walkers -> duration_system;
+
+  number_of_drivers -> duration_game;
+  number_of_drivers -> duration_system;
+
+  version -> duration_game;
+  version -> duration_system;
+  version -> hardware;
+}

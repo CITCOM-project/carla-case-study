@@ -309,32 +309,13 @@ inputs = [
 ]
 
 outputs = [
-    {"name": "collisions_layout", "datatype": bool},
-    # {"name": "collisions_pedestrian", "datatype": bool},
-    {"name": "collisions_vehicle", "datatype": bool},
-    {
-        "name": "red_light",
-        "datatype": bool,
-        "distribution": scipy.stats.rv_discrete(
-            name="red_light", values=(range(0, 2), [1 / 2] * 2)
-        ),
-    },
-    {
-        "name": "vehicle_blocked",
-        "datatype": bool,
-        "distribution": scipy.stats.rv_discrete(
-            name="vehicle_blocked", values=(range(0, 2), [1 / 2] * 2)
-        ),
-    },
+    {"name": "score_penalty", "datatype": float},
     {"name": "route_length", "datatype": float},
     {"name": "route_timeout", "datatype": bool},
     {"name": "score_route", "datatype": float},
     {"name": "score_composed", "datatype": float},
     {"name": "duration_game", "datatype": float},
     {"name": "duration_system", "datatype": float},
-    # {"name": "status", "datatype": Status},
-    # {"name": "stop_infraction", "datatype": int},
-    # {"name": "total_steps", "datatype": int},
     {"name": "infraction", "datatype": Infraction, "distribution": EnumGen(Infraction)},
 ]
 

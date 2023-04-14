@@ -1,0 +1,355 @@
+{
+  "tests": [
+    {
+      "name": "cloudiness --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "cloudiness"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "cloudiness _||_ duration_game | ['number_of_drivers', 'score_penalty', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "cloudiness"
+      ],
+      "expectedEffect": {
+        "duration_game": "NoEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "precipitation --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "precipitation"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "precipitation_deposits --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "precipitation_deposits"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "sun_altitude_angle --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "sun_altitude_angle"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "sun_azimuth_angle --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "sun_azimuth_angle"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "wind_intensity --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "wind_intensity"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "ego_vehicle_length --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "ego_vehicle_length"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "ego_vehicle_width --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "ego_vehicle_width"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "ego_vehicle_height --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "ego_vehicle_height"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "percentage_speed_limit --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "percentage_speed_limit"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "number_of_drivers --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "number_of_drivers"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "number_of_walkers --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "number_of_walkers"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "route_length --> score_penalty",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "route_length"
+      ],
+      "expectedEffect": {
+        "score_penalty": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "score_penalty --> duration_game | ['number_of_drivers', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "score_penalty"
+      ],
+      "expectedEffect": {
+        "duration_game": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "precipitation _||_ duration_game | ['number_of_drivers', 'score_penalty', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "precipitation"
+      ],
+      "expectedEffect": {
+        "duration_game": "NoEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "precipitation_deposits _||_ duration_game | ['number_of_drivers', 'score_penalty', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "precipitation_deposits"
+      ],
+      "expectedEffect": {
+        "duration_game": "NoEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "sun_altitude_angle _||_ duration_game | ['number_of_drivers', 'score_penalty', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "sun_altitude_angle"
+      ],
+      "expectedEffect": {
+        "duration_game": "NoEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "sun_azimuth_angle _||_ duration_game | ['number_of_drivers', 'score_penalty', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "sun_azimuth_angle"
+      ],
+      "expectedEffect": {
+        "duration_game": "NoEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "wind_intensity _||_ duration_game | ['number_of_drivers', 'score_penalty', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "wind_intensity"
+      ],
+      "expectedEffect": {
+        "duration_game": "NoEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "ego_vehicle_length _||_ duration_game | ['number_of_drivers', 'score_penalty', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "ego_vehicle_length"
+      ],
+      "expectedEffect": {
+        "duration_game": "NoEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "ego_vehicle_width _||_ duration_game | ['number_of_drivers', 'score_penalty', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "ego_vehicle_width"
+      ],
+      "expectedEffect": {
+        "duration_game": "NoEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "ego_vehicle_height _||_ duration_game | ['number_of_drivers', 'score_penalty', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "ego_vehicle_height"
+      ],
+      "expectedEffect": {
+        "duration_game": "NoEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "percentage_speed_limit _||_ duration_game | ['number_of_drivers', 'score_penalty', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "percentage_speed_limit"
+      ],
+      "expectedEffect": {
+        "duration_game": "NoEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "number_of_drivers --> duration_game | ['score_penalty', 'route_length', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "number_of_drivers"
+      ],
+      "expectedEffect": {
+        "duration_game": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "number_of_walkers --> duration_game | ['number_of_drivers', 'score_penalty', 'route_length']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "number_of_walkers"
+      ],
+      "expectedEffect": {
+        "duration_game": "SomeEffect"
+      },
+      "skip": false
+    },
+    {
+      "name": "route_length --> duration_game | ['number_of_drivers', 'score_penalty', 'number_of_walkers']",
+      "estimator": "LinearRegressionEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "route_length"
+      ],
+      "expectedEffect": {
+        "duration_game": "SomeEffect"
+      },
+      "skip": false
+    }
+  ]
+}

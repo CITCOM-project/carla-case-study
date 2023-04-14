@@ -1,0 +1,23 @@
+digraph simtime {
+cloudiness -> score_penalty;
+precipitation -> score_penalty;
+precipitation_deposits -> score_penalty;
+sun_altitude_angle -> score_penalty;
+sun_azimuth_angle -> score_penalty;
+wind_intensity -> score_penalty;
+
+/* ego_vehicle -> score_penalty; */
+ego_vehicle_length -> score_penalty;
+ego_vehicle_width -> score_penalty;
+ego_vehicle_height -> score_penalty;
+
+percentage_speed_limit -> score_penalty;
+number_of_drivers -> score_penalty;
+number_of_walkers -> score_penalty;
+route_length -> score_penalty;
+
+number_of_drivers -> duration_game;
+number_of_walkers -> duration_game;
+route_length -> duration_game;
+score_penalty -> duration_game;
+}

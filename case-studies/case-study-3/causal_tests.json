@@ -1,0 +1,17 @@
+{
+  "tests": [
+    {
+      "name": "duration_game --> duration_system",
+      "estimator": "InstrumentalVariableEstimator",
+      "estimate_type": "coefficient",
+      "effect": "direct",
+      "mutations": [
+        "duration_game"
+      ],
+      "expectedEffect": {
+        "duration_system": "SomeEffect"
+      },
+      "skip": false
+    }
+  ]
+}
