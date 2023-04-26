@@ -1,9 +1,11 @@
 # Case Studies
 
-This directory contains the causal tests for each of our three case studies. Each case study can be run by calling `bash run_case_study.sh $study` from this directory, where `$study` is the number of the case study you wish to run, e.g. `bash run_case_study.sh 1`. The output will then be written to `case-study-$study/tests.log`. Alternatively, you can simply call the following python script, which will run the first case study. For the other case studies, replace `case-study-1` with `case-study-2` or `case-study-3`.
+This directory contains the causal tests for each of our three case studies. To run the causal tests, please follow the following steps:
 
-`python case-study-1/run_causal_tests.py --data_path ../data/TCP_random_vehicle_infractions.csv --dag_path case-study-1/dag.dot --json_path case-study-1/causal_tests.json --log_path case-study-1/tests.log`
+1. Install [Anaconda](https://www.anaconda.com/download/) if you do not already have it.
+2. `conda create -n carlastudy python=3.9`
+3. `pip install -r requirements.txt`
+4. Each case study can be run by calling `bash run_case_study.sh $study` from the `case-studies` directory, where `$study` is the number of the case study you wish to run, e.g. `bash run_case_study.sh 1`. The output will then be written to `case-study-$study/tests.log`.<br/>
+Alternatively, you can simply call `python case-study-1/run_causal_tests.py --data_path ../data/TCP_random_vehicle_infractions.csv --dag_path case-study-1/dag.dot --json_path case-study-1/causal_tests.json --log_path case-study-1/tests.log`, which will run the first case study. For the other case studies, simply replace `case-study-1` with `case-study-2` or `case-study-3`.
 
-> **_NOTE:_**  You will need to set up and initialise the conda environment for causal testing before running the case study code. Please see documentation of the causal testing framework for instructions on how to do this.
-
-Each case study has its own `run_causal_tests.py` script in the interest of clarity, however these could be combined into a single script by combining the lists of inputs and outputs.
+Each case study has its own `run_causal_tests.py` script in the interest of clarity, however these could be combined into a single script by combining the lists of inputs and outputs, thus enabling all three causal test suites to be run with a single python script.
