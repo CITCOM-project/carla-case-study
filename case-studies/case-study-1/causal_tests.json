@@ -6,7 +6,7 @@
         "estimate_type": "coefficient",
         "effect": "direct",
         "mutations": ["score_route"],
-        "expectedEffect": {"score_composed": "1.0"},
+        "expected_effect": {"score_composed": "1.0"},
         "conditions": ["infraction == 'False'"],
         "skip": false
       },
@@ -16,7 +16,7 @@
         "estimate_type": "coefficient",
         "effect": "direct",
         "mutations": ["score_route"],
-        "expectedEffect": {"score_composed": "0.8"},
+        "expected_effect": {"score_composed": "0.8"},
         "conditions": ["infraction == 'stop_infraction'"],
         "comment": "No stop signs in town 1?",
         "skip": true
@@ -27,7 +27,7 @@
         "estimate_type": "coefficient",
         "effect": "direct",
         "mutations": ["score_route"],
-        "expectedEffect": {"score_composed": "0.7"},
+        "expected_effect": {"score_composed": "0.7"},
         "conditions": ["infraction == 'red_light'"],
         "skip": false
       },
@@ -37,7 +37,7 @@
         "estimate_type": "coefficient",
         "effect": "direct",
         "mutations": ["score_route"],
-        "expectedEffect": {"score_composed": "0.65"},
+        "expected_effect": {"score_composed": "0.65"},
         "conditions": ["infraction == 'collisions_layout'"],
         "skip": false
       },
@@ -47,7 +47,7 @@
         "estimate_type": "coefficient",
         "effect": "direct",
         "mutations": ["score_route"],
-        "expectedEffect": {"score_composed": "0.6"},
+        "expected_effect": {"score_composed": "0.6"},
         "conditions": ["infraction == 'collisions_vehicle'"],
         "skip": false
       },
@@ -57,7 +57,7 @@
         "estimate_type": "coefficient",
         "effect": "direct",
         "mutations": ["score_route"],
-        "expectedEffect": {"score_composed": "0.5"},
+        "expected_effect": {"score_composed": "0.5"},
         "conditions": ["infraction == 'collisions_pedestrian'"],
         "skip": false
       }

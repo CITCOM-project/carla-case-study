@@ -8,7 +8,7 @@
       "mutations": [
         "duration_game"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_system": "Positive"
       },
       "skip": false

@@ -8,7 +8,7 @@
       "mutations": [
         "cloudiness"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -21,7 +21,7 @@
       "mutations": [
         "cloudiness"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "NoEffect"
       },
       "skip": false
@@ -34,7 +34,7 @@
       "mutations": [
         "precipitation"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -47,7 +47,7 @@
       "mutations": [
         "precipitation_deposits"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -60,7 +60,7 @@
       "mutations": [
         "sun_altitude_angle"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -73,7 +73,7 @@
       "mutations": [
         "sun_azimuth_angle"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -86,7 +86,7 @@
       "mutations": [
         "wind_intensity"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -99,7 +99,7 @@
       "mutations": [
         "ego_vehicle_length"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -112,7 +112,7 @@
       "mutations": [
         "ego_vehicle_width"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -125,7 +125,7 @@
       "mutations": [
         "ego_vehicle_height"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -138,7 +138,7 @@
       "mutations": [
         "percentage_speed_limit"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -151,7 +151,7 @@
       "mutations": [
         "number_of_drivers"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -164,7 +164,7 @@
       "mutations": [
         "number_of_walkers"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -177,7 +177,7 @@
       "mutations": [
         "route_length"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "score_penalty": "SomeEffect"
       },
       "skip": false
@@ -190,7 +190,7 @@
       "mutations": [
         "score_penalty"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "SomeEffect"
       },
       "skip": false
@@ -203,7 +203,7 @@
       "mutations": [
         "precipitation"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "NoEffect"
       },
       "skip": false
@@ -216,7 +216,7 @@
       "mutations": [
         "precipitation_deposits"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "NoEffect"
       },
       "skip": false
@@ -229,7 +229,7 @@
       "mutations": [
         "sun_altitude_angle"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "NoEffect"
       },
       "skip": false
@@ -242,7 +242,7 @@
       "mutations": [
         "sun_azimuth_angle"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "NoEffect"
       },
       "skip": false
@@ -255,7 +255,7 @@
       "mutations": [
         "wind_intensity"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "NoEffect"
       },
       "skip": false
@@ -268,7 +268,7 @@
       "mutations": [
         "ego_vehicle_length"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "NoEffect"
       },
       "skip": false
@@ -281,7 +281,7 @@
       "mutations": [
         "ego_vehicle_width"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "NoEffect"
       },
       "skip": false
@@ -294,7 +294,7 @@
       "mutations": [
         "ego_vehicle_height"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "NoEffect"
       },
       "skip": false
@@ -307,7 +307,7 @@
       "mutations": [
         "percentage_speed_limit"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "NoEffect"
       },
       "skip": false
@@ -320,7 +320,7 @@
       "mutations": [
         "number_of_drivers"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "SomeEffect"
       },
       "skip": false
@@ -333,7 +333,7 @@
       "mutations": [
         "number_of_walkers"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "SomeEffect"
       },
       "skip": false
@@ -346,7 +346,7 @@
       "mutations": [
         "route_length"
       ],
-      "expectedEffect": {
+      "expected_effect": {
         "duration_game": "SomeEffect"
       },
       "skip": false
