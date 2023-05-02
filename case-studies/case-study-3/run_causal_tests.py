@@ -86,7 +86,7 @@ modelling_scenario.setup_treatment_variables()
 
 
 def iv_estimator(**kwargs):
-    return InstrumentalVariableEstimator(**kwargs, instrument="cloudiness")
+    return InstrumentalVariableEstimator(**kwargs, instrument="route_length")
 
 
 estimators = {
