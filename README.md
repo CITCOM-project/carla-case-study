@@ -1,6 +1,6 @@
 # Carla Case Study
 
-Code for our investigation into testing autonomous driving systems (ADSs) in the context of CARLA. The repo contains test code, DAGs, and data from the ADSs. We also have submodules for our forks of the ADSs.
+Code for our investigation into testing autonomous driving systems (ADSs) in the context of CARLA. The repo contains test code, DAGs, and data from the ADSs. We also have submodules for our forks of the ADSs. N.B. Make sure you use the `--recursive` option when cloning the repo.
 
 ## Directory Structure
  - InterFuser - Fork of the [InterFuser repo](https://github.com/opendilab/InterFuser/) with slight modifications to facilitate data collection
