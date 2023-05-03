@@ -1,13 +1,13 @@
 # Case Study 1
 In this case study, we use exploratory testing to discover the route cause of missing data values.
 
-We only encountered missing data values for TCP, so it only applies to TCP:
+We only encountered missing data values for TCP, so this case study only applies to TCP:
 ```
 rm TCP-tests.log # if it exists
 python run_causal_tests.py \
 --data_path ../../data/TCP.csv \
 --dag_path dag.dot \
---json_path causal_tests_TCP.json \
+--json_path causal_tests.json \
 --log_path TCP-tests.log
 ```
 
