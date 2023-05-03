@@ -143,4 +143,6 @@ data = (
 )
 data["effect modified"] = data['effect modified'].astype(float)
 print(data)
-print(data.style.to_latex())
+data["effect_modified"] = [f"{row['effect modified']}[{row['modified low']},{row['modified high']}]" for _, row in data.iterrows()]
+data["effect_original"] = [f"{row['effect original']}[{row['original low']},{row['original high']}]" for _, row in data.iterrows()]
+print(data[['datapoints','effect_modified','effect_original']].style.to_latex())
