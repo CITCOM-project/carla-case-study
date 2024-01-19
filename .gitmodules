@@ -1,6 +1,6 @@
 [submodule "TCP"]
 	path = TCP
 	url = ../TCP
-[submodule "InterFuser"]
-	path = InterFuser
-	url = ../InterFuser/
+[submodule "carla_garage"]
+	path = carla_garage
+	url = ../carla_garage/
