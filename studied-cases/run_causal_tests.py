@@ -6,7 +6,7 @@ import pandas as pd
 from causal_testing.specification.scenario import Scenario
 from causal_testing.specification.variable import Input, Output
 from causal_testing.testing.causal_test_outcome import Positive, Negative, NoEffect, SomeEffect, ExactValue
-from causal_testing.testing.estimators import LinearRegressionEstimator
+from causal_testing.testing.estimators import LinearRegressionEstimator, InstrumentalVariableEstimator
 from causal_testing.json_front.json_class import JsonUtility
 from enum import Enum
 
@@ -154,6 +154,10 @@ def validate_variables(data_dict: dict) -> tuple:
     return inputs, outputs, constraints
 
 
+def iv_estimator(**kwargs):
+    return InstrumentalVariableEstimator(**kwargs, instrument="route_length")
+
+
 def main():
     """
     Main entrypoint of the script:
@@ -177,7 +181,10 @@ def main():
 
         modelling_scenario.setup_treatment_variables()
 
-        estimators = {"LinearRegressionEstimator": LinearRegressionEstimator}
+        estimators = {
+            "LinearRegressionEstimator": LinearRegressionEstimator,
+            "InstrumentalVariableEstimator": iv_estimator,
+        }
 
         # Step 3: Define the expected variables
 
@@ -215,6 +222,10 @@ def main():
             test.pop("estimator")
 
             if "result" in test:
+                test["estimator"] = test["result"].estimator.__class__.__name__
+
+                test["versions"] = list(set(test["result"].estimator.df["carla_version"]))
+
                 test["result"] = test["result"].to_dict(json=True)
 
                 test["result"].pop("treatment_value")

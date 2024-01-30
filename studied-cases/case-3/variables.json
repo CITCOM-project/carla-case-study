@@ -1,0 +1,18 @@
+{
+  "variables": [{
+      "name": "simulation_time",
+      "datatype": "float",
+      "typestring": "Input"
+    },
+    {
+      "name": "system_time",
+      "datatype": "float",
+      "typestring": "Output"
+    },
+    {
+      "name": "route_length",
+      "datatype": "float",
+      "typestring": "Output"
+    }
+  ]
+}
