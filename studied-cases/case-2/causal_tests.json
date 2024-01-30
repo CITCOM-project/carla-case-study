@@ -1,0 +1,14 @@
+{
+    "tests": [
+      {
+        "name": "Change ego vehicle",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["ego_vehicle"],
+        "expected_effect": {"infraction_penalty": "NoEffect"},
+        "formula": "infraction_penalty ~ ego_vehicle",
+        "skip": false
+      }
+  ]
+}

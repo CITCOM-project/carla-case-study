@@ -1,0 +1,13 @@
+{
+  "variables": [{
+      "name": "ego_vehicle",
+      "datatype": "float",
+      "typestring": "Input"
+    },
+    {
+      "name": "infraction_penalty",
+      "datatype": "float",
+      "typestring": "Output"
+    }
+  ]
+}
