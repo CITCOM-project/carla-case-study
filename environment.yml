@@ -5,4 +5,4 @@ dependencies:
   - python=3.11
   - pip
   - pip:
-    - causal-testing-framework==5.3.3
+    - causal-testing-framework==5.3.4
