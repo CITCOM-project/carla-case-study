@@ -12,25 +12,13 @@
         "skip": false
       },
       {
-        "name": "collisions_pedestrian",
+        "name": "red_light",
         "estimator": "LinearRegressionEstimator",
         "estimate_type": "coefficient",
         "effect": "direct",
         "mutations": ["completion_score"],
-        "expected_effect": {"driving_score": "0.5"},
-        "query": "infraction_name == 'collisions_pedestrian'",
-        "formula": "driving_score ~ completion_score + I(completion_score * outside_route_lanes * 0.01)",
-        "comment": "This only happened once in the data so no confidence intervals",
-        "skip": false
-      },
-      {
-        "name": "collisions_vehicle",
-        "estimator": "LinearRegressionEstimator",
-        "estimate_type": "coefficient",
-        "effect": "direct",
-        "mutations": ["completion_score"],
-        "expected_effect": {"driving_score": "0.6"},
-        "query": "infraction_name == 'collisions_vehicle'",
+        "expected_effect": {"driving_score": "0.7"},
+        "query": "infraction_name == 'red_light'",
         "formula": "driving_score ~ completion_score + I(completion_score * outside_route_lanes * 0.01)",
         "skip": false
       },
@@ -46,14 +34,26 @@
         "skip": false
       },
       {
-        "name": "red_light",
+        "name": "collisions_vehicle",
         "estimator": "LinearRegressionEstimator",
         "estimate_type": "coefficient",
         "effect": "direct",
         "mutations": ["completion_score"],
-        "expected_effect": {"driving_score": "0.7"},
-        "query": "infraction_name == 'red_light'",
+        "expected_effect": {"driving_score": "0.6"},
+        "query": "infraction_name == 'collisions_vehicle'",
         "formula": "driving_score ~ completion_score + I(completion_score * outside_route_lanes * 0.01)",
+        "skip": false
+      },
+      {
+        "name": "collisions_pedestrian",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["completion_score"],
+        "expected_effect": {"driving_score": "0.5"},
+        "query": "infraction_name == 'collisions_pedestrian'",
+        "formula": "driving_score ~ completion_score + I(completion_score * outside_route_lanes * 0.01)",
+        "comment": "This only happened once in the data so no confidence intervals",
         "skip": false
       }
   ]
