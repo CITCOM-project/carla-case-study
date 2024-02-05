@@ -237,6 +237,10 @@ def main():
 
         print(json.dumps(test_outcomes, indent=2))
 
+        df = json_utility.data_collector.data
+        for infraction in set(df.infraction_name):
+            print(infraction, len(df.query(f"infraction_name == '{infraction}'")))
+
     except ValidationError as ve:
         print(f"Cannot validate the specified input configurations: {ve}")
 
