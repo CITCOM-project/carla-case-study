@@ -137,7 +137,11 @@ def validate_variables(data_dict: dict) -> tuple:
         ]
 
         outputs = [
-            Output(variable["name"], eval(variable["datatype"]))
+            Output(
+                variable["name"],
+                eval(variable["datatype"]),
+                hidden=variable["hidden"] if "hidden" in variable else False,
+            )
             for variable in variables
             if variable["typestring"] == "Output"
         ]
@@ -199,6 +203,11 @@ def main():
             "0.65": ExactValue(0.65),
             "0.6": ExactValue(0.6),
             "0.5": ExactValue(0.5),
+            "-0.01": ExactValue(-0.01, atol=0.1),
+            "-0.007": ExactValue(-0.007, atol=0.1),
+            "-0.0065": ExactValue(-0.0065, atol=0.1),
+            "-0.006": ExactValue(-0.006, atol=0.1),
+            "-0.005": ExactValue(-0.005, atol=0.1),
         }
 
         # Step 4: Call the JSONUtility class to perform the causal tests
@@ -223,8 +232,6 @@ def main():
 
             if "result" in test:
                 test["estimator"] = test["result"].estimator.__class__.__name__
-
-                test["versions"] = list(set(test["result"].estimator.df["carla_version"]))
 
                 test["result"] = test["result"].to_dict(json=True)
 

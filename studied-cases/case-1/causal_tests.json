@@ -8,7 +8,7 @@
         "mutations": ["completion_score"],
         "expected_effect": {"driving_score": "1.0"},
         "query": "infraction_name == 'none'",
-        "formula": "driving_score ~ completion_score + I(completion_score * outside_route_lanes * 0.01)",
+        "formula": "driving_score ~ completion_score + (completion_score * outside_route_lanes)",
         "skip": false
       },
       {
@@ -19,7 +19,7 @@
         "mutations": ["completion_score"],
         "expected_effect": {"driving_score": "0.7"},
         "query": "infraction_name == 'red_light'",
-        "formula": "driving_score ~ completion_score + I(completion_score * outside_route_lanes * 0.01)",
+        "formula": "driving_score ~ completion_score + (completion_score * outside_route_lanes)",
         "skip": false
       },
       {
@@ -30,7 +30,7 @@
         "mutations": ["completion_score"],
         "expected_effect": {"driving_score": "0.65"},
         "query": "infraction_name == 'collisions_layout'",
-        "formula": "driving_score ~ completion_score + I(completion_score * outside_route_lanes * 0.01)",
+        "formula": "driving_score ~ completion_score + (completion_score * outside_route_lanes)",
         "skip": false
       },
       {
@@ -41,7 +41,7 @@
         "mutations": ["completion_score"],
         "expected_effect": {"driving_score": "0.6"},
         "query": "infraction_name == 'collisions_vehicle'",
-        "formula": "driving_score ~ completion_score + I(completion_score * outside_route_lanes * 0.01)",
+        "formula": "driving_score ~ completion_score + (completion_score * outside_route_lanes)",
         "skip": false
       },
       {
@@ -52,8 +52,54 @@
         "mutations": ["completion_score"],
         "expected_effect": {"driving_score": "0.5"},
         "query": "infraction_name == 'collisions_pedestrian'",
-        "formula": "driving_score ~ completion_score + I(completion_score * outside_route_lanes * 0.01)",
+        "formula": "driving_score ~ completion_score + (completion_score * outside_route_lanes)",
         "comment": "This only happened once in the data so no confidence intervals",
+        "skip": false
+      },
+
+
+      {
+        "name": "no_infraction_lanes",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["outside_route_lanes:completion_score"],
+        "expected_effect": {"driving_score": "-0.01"},
+        "query": "infraction_name == 'none'",
+        "formula": "driving_score ~ (outside_route_lanes * completion_score)",
+        "skip": false
+      },
+      {
+        "name": "red_light_lanes",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["outside_route_lanes:completion_score"],
+        "expected_effect": {"driving_score": "-0.007"},
+        "query": "infraction_name == 'red_light'",
+        "formula": "driving_score ~ (outside_route_lanes * completion_score)",
+        "skip": false
+      },
+      {
+        "name": "collisions_layout_lanes",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["outside_route_lanes:completion_score"],
+        "expected_effect": {"driving_score": "-0.0065"},
+        "query": "infraction_name == 'collisions_layout'",
+        "formula": "driving_score ~ (outside_route_lanes * completion_score)",
+        "skip": false
+      },
+      {
+        "name": "collisions_vehicle_lanes",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["outside_route_lanes:completion_score"],
+        "expected_effect": {"driving_score": "-0.006"},
+        "query": "infraction_name == 'collisions_vehicle'",
+        "formula": "driving_score ~ (outside_route_lanes * completion_score)",
         "skip": false
       }
   ]

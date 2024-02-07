@@ -13,6 +13,22 @@
       "name": "infraction_name",
       "datatype": "str",
       "typestring": "Output"
+    },
+    {
+      "name": "infraction_penalty",
+      "datatype": "float",
+      "typestring": "Output"
+    },
+    {
+      "name": "outside_route_lanes",
+      "datatype": "float",
+      "typestring": "Output"
+    },
+    {
+      "name": "outside_route_lanes:completion_score",
+      "datatype": "float",
+      "typestring": "Output",
+      "hidden": true
     }
   ]
 }
