@@ -167,12 +167,9 @@ def main():
     Main entrypoint of the script:
     """
     args = get_args()
+    INFRACTIONS = ["none", "red_light", "collisions_layout", "collisions_vehicle", "collisions_pedestrian"]
 
     try:
-        # Step 0: Read in the runtime dataset(s)
-
-        data_frame = pd.concat([pd.read_csv(d) for d in args.data_path])
-
         # Step 1: Read in the JSON input/output variables and parse io arguments
 
         variables_dict = read_variables(args.variables_path)
@@ -203,11 +200,11 @@ def main():
             "0.65": ExactValue(0.65),
             "0.6": ExactValue(0.6),
             "0.5": ExactValue(0.5),
-            "-0.01": ExactValue(-0.01, atol=0.1),
-            "-0.007": ExactValue(-0.007, atol=0.1),
-            "-0.0065": ExactValue(-0.0065, atol=0.1),
-            "-0.006": ExactValue(-0.006, atol=0.1),
-            "-0.005": ExactValue(-0.005, atol=0.1),
+            "-1.0": ExactValue(-1.0, atol=0.1),
+            "-0.7": ExactValue(-0.7, atol=0.1),
+            "-0.65": ExactValue(-0.65, atol=0.1),
+            "-0.6": ExactValue(-0.6, atol=0.1),
+            "-0.5": ExactValue(-0.5, atol=0.1),
         }
 
         # Step 4: Call the JSONUtility class to perform the causal tests
@@ -218,7 +215,14 @@ def main():
         json_utility.set_paths(args.tests_path, args.dag_path, args.data_path)
 
         # Step 6: Sets up all the necessary parts of the json_class needed to execute tests
-        json_utility.setup(scenario=modelling_scenario, data=data_frame)
+        json_utility.setup(scenario=modelling_scenario)
+        df = json_utility.data_collector.data
+        df["outside_route_lanes"] *= 0.01
+
+        # Skip any tests with inadequate training data
+        for test in json_utility.test_plan["tests"]:
+            if "query" in test and len(df.query(test["query"])) == 0:
+                test["skip"] = True
 
         # Step 7: Run the causal tests
         test_outcomes = json_utility.run_json_tests(
@@ -232,21 +236,30 @@ def main():
 
             if "result" in test:
                 test["estimator"] = test["result"].estimator.__class__.__name__
-
                 test["result"] = test["result"].to_dict(json=True)
-
                 test["result"].pop("treatment_value")
-
                 test["result"].pop("control_value")
+                assert len(test["mutations"]) == 1
+                test["mutations"] = test["mutations"][0]
 
         with open(args.output_path, "w") as f:
             print(json.dumps(test_outcomes, indent=2), file=f)
 
         print(json.dumps(test_outcomes, indent=2))
 
-        df = json_utility.data_collector.data
-        for infraction in set(df.infraction_name):
+        for infraction in INFRACTIONS:
             print(infraction, len(df.query(f"infraction_name == '{infraction}'")))
+
+        for test in test_outcomes:
+            if "result" not in test:
+                continue
+            for k, v in test.pop("result").items():
+                test[k] = v
+            test[
+                "result_col"
+            ] = f"{round(test['effect_estimate'], 3)}[{round(test['ci_low'], 3)}, {round(test['ci_high'], 3)}]"
+        test_outcomes = pd.DataFrame(test_outcomes)
+        test_outcomes.to_csv(str(args.output_path).replace(".json", ".csv"))
 
     except ValidationError as ve:
         print(f"Cannot validate the specified input configurations: {ve}")
