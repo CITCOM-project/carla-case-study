@@ -25,7 +25,7 @@
       "typestring": "Output"
     },
     {
-      "name": "outside_route_lanes:completion_score",
+      "name": "completion_score:outside_route_lanes",
       "datatype": "float",
       "typestring": "Output",
       "hidden": true
