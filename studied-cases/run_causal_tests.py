@@ -257,7 +257,7 @@ def main():
                 test[k] = v
             test[
                 "result_col"
-            ] = f"{round(test['effect_estimate'], 3)}[{round(test['ci_low'], 3)}, {round(test['ci_high'], 3)}]"
+            ] = f"{round(test['effect_estimate'][test['mutations']], 3)}[{round(test['ci_low'], 3)}, {round(test['ci_high'], 3)}]"
         test_outcomes = pd.DataFrame(test_outcomes)
         test_outcomes.to_csv(str(args.output_path).replace(".json", ".csv"))
 
