@@ -58,64 +58,6 @@
       },
 
       {
-        "name": "no_infraction",
-        "estimator": "LinearRegressionEstimator",
-        "estimate_type": "coefficient",
-        "effect": "direct",
-        "mutations": ["completion_score"],
-        "expected_effect": {"driving_score": "1.0"},
-        "query": "infraction_name == 'none'",
-        "formula": "driving_score ~ completion_score",
-        "skip": false
-      },
-      {
-        "name": "red_light",
-        "estimator": "LinearRegressionEstimator",
-        "estimate_type": "coefficient",
-        "effect": "direct",
-        "mutations": ["completion_score"],
-        "expected_effect": {"driving_score": "0.7"},
-        "query": "infraction_name == 'red_light'",
-        "formula": "driving_score ~ completion_score",
-        "skip": false
-      },
-      {
-        "name": "collisions_layout",
-        "estimator": "LinearRegressionEstimator",
-        "estimate_type": "coefficient",
-        "effect": "direct",
-        "mutations": ["completion_score"],
-        "expected_effect": {"driving_score": "0.65"},
-        "query": "infraction_name == 'collisions_layout'",
-        "formula": "driving_score ~ completion_score",
-        "skip": false
-      },
-      {
-        "name": "collisions_vehicle",
-        "estimator": "LinearRegressionEstimator",
-        "estimate_type": "coefficient",
-        "effect": "direct",
-        "mutations": ["completion_score"],
-        "expected_effect": {"driving_score": "0.6"},
-        "query": "infraction_name == 'collisions_vehicle'",
-        "formula": "driving_score ~ completion_score",
-        "skip": false
-      },
-      {
-        "name": "collisions_pedestrian",
-        "estimator": "LinearRegressionEstimator",
-        "estimate_type": "coefficient",
-        "effect": "direct",
-        "mutations": ["completion_score"],
-        "expected_effect": {"driving_score": "0.5"},
-        "query": "infraction_name == 'collisions_pedestrian'",
-        "formula": "driving_score ~ completion_score",
-        "comment": "This only happened once in the data so no confidence intervals",
-        "skip": false
-      },
-
-
-      {
         "name": "no_infraction_lanes",
         "estimator": "LinearRegressionEstimator",
         "estimate_type": "coefficient",
@@ -169,6 +111,63 @@
         "query": "infraction_name == 'collisions_pedestrian'",
         "formula": "driving_score ~ (completion_score * outside_route_lanes)",
         "comment":"This didn't happen at all in the data, so no estimate!",
+        "skip": false
+      },
+
+      {
+        "name": "no_infraction_simple",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["completion_score"],
+        "expected_effect": {"driving_score": "1.0"},
+        "query": "infraction_name == 'none'",
+        "formula": "driving_score ~ completion_score",
+        "skip": false
+      },
+      {
+        "name": "red_light_simple",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["completion_score"],
+        "expected_effect": {"driving_score": "0.7"},
+        "query": "infraction_name == 'red_light'",
+        "formula": "driving_score ~ completion_score",
+        "skip": false
+      },
+      {
+        "name": "collisions_layout_simple",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["completion_score"],
+        "expected_effect": {"driving_score": "0.65"},
+        "query": "infraction_name == 'collisions_layout'",
+        "formula": "driving_score ~ completion_score",
+        "skip": false
+      },
+      {
+        "name": "collisions_vehicle_simple",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["completion_score"],
+        "expected_effect": {"driving_score": "0.6"},
+        "query": "infraction_name == 'collisions_vehicle'",
+        "formula": "driving_score ~ completion_score",
+        "skip": false
+      },
+      {
+        "name": "collisions_pedestrian_simple",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["completion_score"],
+        "expected_effect": {"driving_score": "0.5"},
+        "query": "infraction_name == 'collisions_pedestrian'",
+        "formula": "driving_score ~ completion_score",
+        "comment": "This only happened once in the data so no confidence intervals",
         "skip": false
       }
   ]

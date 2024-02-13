@@ -200,11 +200,11 @@ def main():
             "0.65": ExactValue(0.65),
             "0.6": ExactValue(0.6),
             "0.5": ExactValue(0.5),
-            "-1.0": ExactValue(-1.0, atol=0.1),
-            "-0.7": ExactValue(-0.7, atol=0.1),
-            "-0.65": ExactValue(-0.65, atol=0.1),
-            "-0.6": ExactValue(-0.6, atol=0.1),
-            "-0.5": ExactValue(-0.5, atol=0.1),
+            "-1.0": ExactValue(-1.0),
+            "-0.7": ExactValue(-0.7),
+            "-0.65": ExactValue(-0.65),
+            "-0.6": ExactValue(-0.6),
+            "-0.5": ExactValue(-0.5),
         }
 
         # Step 4: Call the JSONUtility class to perform the causal tests
@@ -249,6 +249,7 @@ def main():
 
         for infraction in INFRACTIONS:
             print(infraction, len(df.query(f"infraction_name == '{infraction}'")))
+        print("Percent spent out of lane", (df["outside_route_lanes"].sum() / len(df)) * 100)
 
         for test in test_outcomes:
             if "result" not in test:
@@ -266,6 +267,8 @@ def main():
 
     else:
         print(f"Execution successful. Output file saved at {Path(args.output_path).parent.resolve()}")
+
+    assert "outside_route_lanes" in df.dtypes
 
 
 if __name__ == "__main__":
