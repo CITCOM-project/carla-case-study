@@ -29,6 +29,12 @@
       "datatype": "float",
       "typestring": "Output",
       "hidden": true
+    },
+    {
+      "name": "I(completion_score * (1 - outside_route_lanes))",
+      "datatype": "float",
+      "typestring": "Output",
+      "hidden": true
     }
   ]
 }
