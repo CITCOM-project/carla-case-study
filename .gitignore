@@ -3,5 +3,4 @@ __pycache__
 *.log
 *.png
 *.pdf
-results.json
-results.csv
+results/

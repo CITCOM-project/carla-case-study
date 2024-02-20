@@ -1,7 +1,7 @@
 {
     "tests": [
       {
-        "name": "TCP CARLA version",
+        "name": "CARLA version 10 Instrumental",
         "estimator": "InstrumentalVariableEstimator",
         "estimate_type": "coefficient",
         "effect": "direct",
@@ -11,13 +11,57 @@
         "skip": false
       },
       {
-        "name": "Garage CARLA version",
+        "name": "CARLA version 11 Instrumental",
         "estimator": "InstrumentalVariableEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["simulation_time"],
+        "query": "carla_version == 11",
+        "expected_effect": {"system_time": "Positive"},
+        "skip": false
+      },
+      {
+        "name": "CARLA version 10 Classical",
+        "estimator": "LinearRegressionEstimator",
         "estimate_type": "coefficient",
         "effect": "direct",
         "mutations": ["simulation_time"],
         "query": "carla_version == 10",
         "expected_effect": {"system_time": "Positive"},
+        "formula": "system_time ~ simulation_time + npc_vehicles + pedestrians",
+        "skip": false
+      },
+      {
+        "name": "CARLA version 11 Classical",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["simulation_time"],
+        "query": "carla_version == 11",
+        "expected_effect": {"system_time": "Positive"},
+        "formula": "system_time ~ simulation_time + npc_vehicles + pedestrians",
+        "skip": false
+      },
+      {
+        "name": "CARLA version 10 None",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["simulation_time"],
+        "query": "carla_version == 10",
+        "expected_effect": {"system_time": "Positive"},
+        "formula": "system_time ~ simulation_time",
+        "skip": false
+      },
+      {
+        "name": "CARLA version 11 None",
+        "estimator": "LinearRegressionEstimator",
+        "estimate_type": "coefficient",
+        "effect": "direct",
+        "mutations": ["simulation_time"],
+        "query": "carla_version == 11",
+        "expected_effect": {"system_time": "Positive"},
+        "formula": "system_time ~ simulation_time",
         "skip": false
       }
   ]

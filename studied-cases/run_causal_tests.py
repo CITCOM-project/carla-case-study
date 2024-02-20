@@ -162,12 +162,24 @@ def iv_estimator(**kwargs):
     return InstrumentalVariableEstimator(**kwargs, instrument="route_length")
 
 
+def get_dict_val(test, key):
+    if isinstance(test[key], float):
+        return
+    assert len(test[key]) == 1, f"More than one value for\n{test[key]}."
+    ((_, v),) = test[key].items()
+    test[key] = v
+    assert isinstance(test[key], float), f"test[{key}] should be a float."
+
+
 def main():
     """
     Main entrypoint of the script:
     """
     args = get_args()
     INFRACTIONS = ["none", "red_light", "collisions_layout", "collisions_vehicle", "collisions_pedestrian"]
+
+    if not os.path.exists(os.path.dirname(args.output_path)):
+        os.makedirs(args.output_path)
 
     try:
         # Step 1: Read in the JSON input/output variables and parse io arguments
@@ -217,7 +229,10 @@ def main():
         # Step 6: Sets up all the necessary parts of the json_class needed to execute tests
         json_utility.setup(scenario=modelling_scenario)
         df = json_utility.data_collector.data
+        # Convert outside_route_lanes from a percentage to a fraction for consistency with infraction penalty
         df["outside_route_lanes"] *= 0.01
+        # Make the default lincoln alphabetically first so coefficients are in terms of switching to the BMW
+        df["ego_vehicle"] = [x.replace("lincoln", "alincoln") for x in df["ego_vehicle"]]
 
         # Skip any tests with inadequate training data
         for test in json_utility.test_plan["tests"]:
@@ -248,25 +263,34 @@ def main():
         print(json.dumps(test_outcomes, indent=2))
 
         for infraction in INFRACTIONS:
-            print(infraction, len(df.query(f"infraction_name == '{infraction}'")))
-        print("Percent spent out of lane", (df["outside_route_lanes"].sum() / len(df)) * 100)
+            ool = df.query(f"infraction_name == '{infraction}'")
+            if len(ool) > 0:
+                print(infraction, len(ool), round(sum(ool["outside_route_lanes"] * 100) / len(ool), 3))
+            else:
+                print(infraction, len(ool))
+
+        print("Percent spent out of lane", round(sum(df["outside_route_lanes"] * 100) / len(df), 3))
 
         for test in test_outcomes:
             if "result" not in test:
                 continue
             for k, v in test.pop("result").items():
                 test[k] = v
+            get_dict_val(test, "effect_estimate")
+            get_dict_val(test, "ci_low")
+            get_dict_val(test, "ci_high")
             test[
                 "result_col"
-            ] = f"{round(test['effect_estimate'][test['mutations']], 3)}[{round(test['ci_low'], 3)}, {round(test['ci_high'], 3)}]"
+            ] = f"{round(test['effect_estimate'], 3)}[{round(test['ci_low'], 3)}, {round(test['ci_high'], 3)}]"
         test_outcomes = pd.DataFrame(test_outcomes)
-        test_outcomes.to_csv(str(args.output_path).replace(".json", ".csv"))
+        test_outcomes[["name", "result_col"]].to_latex(str(args.output_path).replace(".json", ".tex"), index=False)
 
     except ValidationError as ve:
         print(f"Cannot validate the specified input configurations: {ve}")
 
     else:
         print(f"Execution successful. Output file saved at {Path(args.output_path).parent.resolve()}")
+        print("Data file:", args.data_path)
 
     assert "outside_route_lanes" in df.dtypes
 
