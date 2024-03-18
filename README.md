@@ -16,7 +16,8 @@ N.B. Due to the nondeterministic nature of CARLA pedestrian behaviour, the data 
 We also make our exact data available. To do this, you can simply follow the instructions in `studied-cases/README.md`.
 
 ## Setup
-1. Setup CARLA v0.9.10.1:
+1. Install [Anaconda](https://www.anaconda.com/download/) if you do not already have it.
+2. Setup CARLA v0.9.10.1:
    ```
    mkdir CARLA-10 &
    cd CARLA-10 &
@@ -24,7 +25,7 @@ We also make our exact data available. To do this, you can simply follow the ins
    tar -xf CARLA_0.9.10.1.tar.gz &
    rm CARLA_0.9.10.1.tar.gz
    ```
-2. Setup CARLA v0.9.11:
+3. Setup CARLA v0.9.11:
    ```
    mkdir CARLA-11 &
    cd CARLA-11 &
@@ -32,17 +33,17 @@ We also make our exact data available. To do this, you can simply follow the ins
    tar -xf CARLA_0.9.11.tar.gz &
    rm CARLA_0.9.11.tar.gz
    ```
-3. Setup TCP:
+4. Setup TCP:
    ```
    cd TCP & conda env create -f environment.yml --name TCP
    ```
-4. Setup CARLA Garage:
+5. Setup CARLA Garage:
    ```
    cd carla_garage & conda env create -f environment.yml
    ```
 
 ## Data Collection
-5. Collect data for the TCP trained agent with CARLA 10:
+6. Collect data for the TCP trained agent with CARLA 10:
 
    Terminal 1:
    ```
@@ -55,7 +56,7 @@ We also make our exact data available. To do this, you can simply follow the ins
    conda activate TCP
    bash leaderboard/scripts/run_routes.sh 10
    ```
-6. Collect data for the TCP trained agent with CARLA 11:
+7. Collect data for the TCP trained agent with CARLA 11:
 
    Terminal 1:
    ```
@@ -68,13 +69,13 @@ We also make our exact data available. To do this, you can simply follow the ins
    conda activate TCP
    bash leaderboard/scripts/run_routes.sh 11
    ```
-7. Convert the data into a CSV file for causal testing:
+8. Convert the data into a CSV file for causal testing:
    ```
    conda deactivate
    python combine_results.py
    mv results/data.csv ../studied-cases/data/TCP_trained.csv
    ```
-8. Collect data for the TCP privileged agent.
+9. Collect data for the TCP privileged agent.
   1. Open `TCP/leaderboard/scripts/data_collection.sh`, comment out lines 59 and 60, and uncomment lines 57 and 58 to obtain the following:
   ```
   export TEAM_AGENT=team_code/roach_ap_agent.py
@@ -89,7 +90,7 @@ We also make our exact data available. To do this, you can simply follow the ins
      python combine_results.py
      mv results/data.csv ../studied-cases/data/TCP_privileged.csv
      ```
-7. Collect data for CARLA Garage with CARLA 10:
+10. Collect data for CARLA Garage with CARLA 10:
 
    Terminal 1:
    ```
@@ -102,7 +103,7 @@ We also make our exact data available. To do this, you can simply follow the ins
    conda activate TCP
    bash leaderboard/scripts/run_routes_scenarios.sh 10
    ```
-8. Collect data for CARLA Garage with CARLA 11:
+11. Collect data for CARLA Garage with CARLA 11:
    Terminal 1:
    ```
    cd CARLA-11
@@ -114,13 +115,13 @@ We also make our exact data available. To do this, you can simply follow the ins
    conda activate TCP
    bash leaderboard/scripts/run_routes_scenarios.sh 11
    ```
- 9. Convert the data into a CSV file for causal testing:
+12. Convert the data into a CSV file for causal testing:
     ```
     conda deactivate
     python combine_results.py
     mv results/data.csv ../studied-cases/data/garage_trained.csv
     ```
- 10. Collect data for the TCP privileged agent.
+13. Collect data for the TCP privileged agent.
    1. Open `TCP/leaderboard/scripts/data_collection.sh`, comment out lines 59 and 60, and uncomment lines 57 and 58 to obtain the following:
    ```
    export TEAM_AGENT=team_code/roach_ap_agent.py
@@ -136,4 +137,4 @@ We also make our exact data available. To do this, you can simply follow the ins
       mv results/data.csv ../studied-cases/data/garage_privileged.csv
       ```
 ## Causal Testing
-11. Perform causal testing according to `studied-cases/README.md`
+14. Perform causal testing according to `studied-cases/README.md`

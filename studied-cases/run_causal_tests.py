@@ -164,10 +164,14 @@ def iv_estimator(**kwargs):
 
 def get_dict_val(test, key):
     if isinstance(test[key], float):
-        return
-    assert len(test[key]) == 1, f"More than one value for\n{test[key]}."
-    ((_, v),) = test[key].items()
-    test[key] = v
+        pass
+    elif isinstance(test[key], list):
+        assert len(test[key]) == 1, f"{test[key]} too long"
+        test[key] = test[key][0]
+    elif isinstance(test[key], dict):
+        assert len(test[key]) == 1, f"More than one value for\n{test[key]}."
+        ((_, v),) = test[key].items()
+        test[key] = v
     assert isinstance(test[key], float), f"test[{key}] should be a float."
 
 
