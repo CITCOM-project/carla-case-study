@@ -13,7 +13,7 @@ If you do not intend to
 The following steps give instructions on how to reproduce our results. If you would like to re-collect our data, you should follow the steps in order. This will require a PC which meets the [recommended hardware requirements for CARLA](https://github.com/carla-simulator/carla/tree/dev#documentation), and will take a long time (upwards of two weeks) to complete and produce a lot of data.
 N.B. Due to the nondeterministic nature of CARLA pedestrian behaviour, the data may not be exactly the same as what we used, but should give similar results and lead to the same conclusions.
 
-We also make our exact data available. To do this, you can simply follow the instructions in `studied-cases/README.md`.
+We also make our test data available. To use this, you can simply follow the instructions in `studied-cases/README.md`.
 
 ## Setup
 1. Install [Anaconda](https://www.anaconda.com/download/) if you do not already have it.
