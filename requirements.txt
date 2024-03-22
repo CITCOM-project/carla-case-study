@@ -1,3 +1,0 @@
-causal-testing-framework==4.0.1
-networkx~=2.6
-pygraphviz~=1.10
