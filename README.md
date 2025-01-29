@@ -9,7 +9,7 @@ Code for our investigation into applying Causal Testing to software systems with
  - tcp_instrumental_variables.py - compares estimation between instrumental variables and classical adjustment for the TCP data
 
 > [!Note]
-> **Note to reviewers**: The anonymisation does not allow recursive anonymisation, so these directories will be empty.
+> **Note to reviewers**: The anonymisation does not allow recursive anonymisation, so these directories will be empty. Since this repo contains data from the ADSs, you do not need these directories unless you wish to re-collect this data.
 
 ## Replication
 The following steps give instructions on how to reproduce our results. If you would like to re-collect our data, you should follow the steps in order. This will require a PC which meets the [recommended hardware requirements for CARLA](https://github.com/carla-simulator/carla/tree/dev#documentation), and will take a long time (upwards of two weeks) to complete and produce a lot of data.
