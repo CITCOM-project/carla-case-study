@@ -1,6 +1,5 @@
 # Carla Case Study
 Code for our investigation into applying Causal Testing to software systems with unobservable and interacting variables. The repo contains test code, DAGs, and data from the ADSs.
-If you do not intend to
 
 ## Directory Structure
  - carla_garage - Fork of the [carla_garage repo](https://github.com/autonomousvision/carla_garage) with slight modifications to facilitate data collection (e.g. to change the model of the ego-vehicle)
@@ -9,14 +8,21 @@ If you do not intend to
  - data - contains the CSV data files necessary for causal testing
  - tcp_instrumental_variables.py - compares estimation between instrumental variables and classical adjustment for the TCP data
 
+> [!Note]
+> The `carla_garage` and `TCP` directories will be empty unless you clone with the `-recursive` option. Unless you intend to replicate our data collection from the ADSs, you do not need to do this.
+
 ## Replication
 The following steps give instructions on how to reproduce our results. If you would like to re-collect our data, you should follow the steps in order. This will require a PC which meets the [recommended hardware requirements for CARLA](https://github.com/carla-simulator/carla/tree/dev#documentation), and will take a long time (upwards of two weeks) to complete and produce a lot of data.
 N.B. Due to the nondeterministic nature of CARLA pedestrian behaviour, the data may not be exactly the same as what we used, but should give similar results and lead to the same conclusions.
 
 We also make our test data available. To use this, you can simply follow the instructions in `studied-cases/README.md`.
 
+## Pre-requisites
+We used [Anaconda](https://www.anaconda.com/download/) to create a virtual environment and manage dependencies.
+This is not necessary, but you may need to modify some of the commands below if you are not using Anaconda.
+
 ## Setup
-1. Install [Anaconda](https://www.anaconda.com/download/) if you do not already have it.
+1. Clone this repository, making sure to use the `--recursive` option if you intend to replicate our data collection. If you do not intend to do this, you can skip straight to the [Causal Testing](# Causal Testing) section.
 2. Setup CARLA v0.9.10.1:
    ```
    mkdir CARLA-10 &
