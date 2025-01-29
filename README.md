@@ -22,7 +22,7 @@ We used [Anaconda](https://www.anaconda.com/download/) to create a virtual envir
 This is not necessary, but you may need to modify some of the commands below if you are not using Anaconda.
 
 ## Setup
-1. Clone this repository, making sure to use the `--recursive` option if you intend to replicate our data collection. If you do not intend to do this, you can skip straight to the [Causal Testing](# Causal Testing) section.
+1. Clone this repository, making sure to use the `--recursive` option if you intend to replicate our data collection. If you do not intend to do this, you can skip straight to the [Causal Testing](#causal-testing) section.
 2. Setup CARLA v0.9.10.1:
    ```
    mkdir CARLA-10 &
